@@ -1,5 +1,5 @@
-const memoizeResultCreator = () => () => {}
+const memoizeResultCreator = () => {};
 
 module.exports = {
   memoizeResultCreator,
-}
+};

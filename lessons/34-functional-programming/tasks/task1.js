@@ -29,27 +29,17 @@ const createValidator = (checkingFunction, errorMessage) => {
 };
 
 const hasEmail = (email) => {
-  if (email.includes("@")) {
-    return true;
-  } else {
-    return false;
-  }
+  return /^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/.test(
+    email
+  );
 };
 
 const hasNoEmpty = (email) => {
-  if (email.trim() === "") {
-    return false;
-  } else {
-    return true;
-  }
+  return email.trim();
 };
 
 const hasAdult = (age) => {
-  if (age >= 18) {
-    return true;
-  } else {
-    return false;
-  }
+  return age >= 18;
 };
 
 module.exports = {
