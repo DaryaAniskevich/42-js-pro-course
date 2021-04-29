@@ -1,7 +1,7 @@
 import "./styles/index.css";
 import Header from "./components/Header";
 import Content from "./components/Content";
-import Contacts from "./components/Contacts";
+//import Contacts from "./components/Contacts";
 
 const render = () => {
   const root = document.querySelector("#app");
@@ -16,9 +16,9 @@ const render = () => {
   }
 
   if (window.location.pathname === "/contacts") {
-    import("./components/Content").then(({ default: contentModule }) => {
-      console.log(contentModule);
-      root.appendChild(contentModule());
+    import("./components/Contacts").then(({ default: contactsModule }) => {
+      console.log(contactsModule);
+      root.appendChild(contactsModule());
     });
     root.appendChild(Contacts());
   }
