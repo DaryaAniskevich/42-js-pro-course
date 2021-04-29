@@ -20,7 +20,6 @@ const render = () => {
       console.log(contactsModule);
       root.appendChild(contactsModule());
     });
-    root.appendChild(Contacts());
   }
 };
 
