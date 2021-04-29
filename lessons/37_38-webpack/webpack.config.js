@@ -20,7 +20,6 @@ const productionPlugins = [
 ];
 
 const config = {
-  devtool: "inline-source-map",
   mode: isProduction ? "production" : "development",
   entry: "./src/main.js",
   output: {
