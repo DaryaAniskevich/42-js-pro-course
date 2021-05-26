@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.clicker {
+  width: 300px;
+  height: 320px;
+  border: 2px solid #c0c0c0;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  text-align: center;
+}
+.counter {
+  width: 300px;
+  height: 220px;
+  font-size: 70px;
+  color: grey;
+  padding: 40px 0px;
+}
+
+.buttons {
+  display: flex;
+}
+
+.btn {
+  width: 100px;
+  height: 100px;
+  background-size: 50% 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.btnIncrement {
+  background-image: url("../images/add.svg");
+  background-color: green;
+}
+
+.btnDecrement {
+  background-image: url("../images/minus.svg");
+  background-color: red;
+}
+
+.btnReset {
+  background-image: url("../images/reset.svg");
+  background-color: yellow;
+}
