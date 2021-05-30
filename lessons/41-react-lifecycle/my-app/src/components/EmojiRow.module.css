@@ -1,0 +1,19 @@
+.emoji {
+  width: 200px;
+  padding: 10px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  margin-bottom: -1px;
+  display: flex;
+  align-items: center;
+}
+
+.emoji:hover {
+  background-color: rgb(238, 238, 238);
+}
+
+.emoji__image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
