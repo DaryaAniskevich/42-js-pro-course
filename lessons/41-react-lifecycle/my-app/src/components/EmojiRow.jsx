@@ -9,7 +9,7 @@ const EmojiRow = (props) => {
         src={`//cdn.jsdelivr.net/emojione/assets/png/${codePointHex}.png`}
         className={style.emoji__image}
         alt={props.emoji.title}
-      ></img>
+      />
       <span className={style.emoji__name}>{props.emoji.title}</span>
     </div>
   );
