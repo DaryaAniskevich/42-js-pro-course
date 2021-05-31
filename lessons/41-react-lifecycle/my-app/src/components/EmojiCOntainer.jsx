@@ -5,8 +5,8 @@ const EmojiCOntainer = (props) => {
   return (
     <div>
       <div className={style.emoji}>
-        {props.showEmojis.map((emoji, index) => {
-          return <EmojiRow emoji={emoji} key={index} />;
+        {props.filteredEmojis.map((emoji, index) => {
+          return <EmojiRow emoji={emoji} key={emoji.title} />;
         })}
       </div>
     </div>

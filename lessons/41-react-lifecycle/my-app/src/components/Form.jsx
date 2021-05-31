@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import EmojiCOntainer from "./EmojiCOntainer";
 import style from "./Form.module.css";
 
@@ -20,7 +20,7 @@ const Form = () => {
 
   const [value, setValue] = useState("");
 
-  const showEmojis = () => {
+  const filteredEmojis = useMemo(() => {
     if (value.length === 0) {
       return emojis;
     } else {
@@ -33,7 +33,7 @@ const Form = () => {
       filteredEmojis.length = 15;
       return filteredEmojis;
     }
-  };
+  }, [value, emojis]);
 
   return (
     <div className={style.search}>
@@ -46,7 +46,7 @@ const Form = () => {
           }}
         ></input>
       </form>
-      <EmojiCOntainer showEmojis={showEmojis()} />
+      <EmojiCOntainer filteredEmojis={filteredEmojis} emojis={emojis} />
     </div>
   );
 };
