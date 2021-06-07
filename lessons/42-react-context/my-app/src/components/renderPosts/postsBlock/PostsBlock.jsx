@@ -1,4 +1,4 @@
-import Post from "./post/Post";
+import Post from "./Post/Post";
 import style from "./PostsBlock.module.css";
 
 const PostsBlock = (props) => {
@@ -10,7 +10,6 @@ const PostsBlock = (props) => {
             post={post}
             key={post.id}
             author={props.authors.find((author) => author.id === post.userId)}
-            styleTheme={props.styleTheme}
           />
         );
       })}

@@ -1,6 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .header {
@@ -8,8 +9,4 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-.loading {
-  margin-top: 213px;
-  margin-bottom: 213px;
 }

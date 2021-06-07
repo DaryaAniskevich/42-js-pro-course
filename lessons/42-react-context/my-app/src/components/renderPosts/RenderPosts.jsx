@@ -1,41 +1,44 @@
-import React, { useState, useEffect, useContext } from "react";
-import PostsBlock from "../postsBlock/PostsBlock";
-import Button from "react-bootstrap/Button";
-import Spinner from "react-bootstrap/Spinner";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useMemo,
+  useCallback,
+} from "react";
+import PostsBlock from "./postsBlock/PostsBlock";
+import Button from "../Button/Button";
 import style from "./RenderPosts.module.css";
 import { themeContext } from "../themeContext/ThemeContext";
-
-const POSTS_URL = "https://jsonplaceholder.typicode.com/posts";
-const AUTHORS_URL = "https://jsonplaceholder.typicode.com/users";
+import ContentLoader from "react-content-loader";
+const MyLoader = () => <ContentLoader />;
 
 const RenderPosts = () => {
   const { theme, toggleTheme } = useContext(themeContext);
-  let styleTheme = "light";
-  if (theme === "dark") {
-    styleTheme = "dark";
-  }
 
   const [posts, setPosts] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const urls = [POSTS_URL, AUTHORS_URL];
-
-  let requests = urls.map((url) => fetch(url));
+  let requests = [
+    "https://jsonplaceholder.typicode.com/posts",
+    "https://jsonplaceholder.typicode.com/users",
+  ].map((url) => fetch(url));
 
   useEffect(() => {
     setLoading(true);
     Promise.all(requests)
       .then((responses) => Promise.all(responses.map((r) => r.json())))
       .then((results) => {
-        return [setAuthors(results[1]), setPosts(results[0])];
-      })
-      .then(() => setLoading(false));
+        setAuthors(results[1]);
+        setPosts(results[0]);
+        setLoading(false);
+      });
   }, []);
 
   const [numberOfShown, setNumberOfShown] = useState(5);
-  const shownPosts = posts.slice(0, numberOfShown);
+  const shownPosts = useMemo(() => {
+    return posts.slice(0, numberOfShown);
+  }, [posts, numberOfShown]);
 
   let disabled = false;
   if (shownPosts.length >= posts.length) {
@@ -44,37 +47,25 @@ const RenderPosts = () => {
 
   return (
     <>
-      <div className={`${styleTheme}-background`}>
-        <header className={styleTheme}>
+      <div className={`${theme}-background`}>
+        <header className={theme}>
           <div className={style.container}>
             <div className={style.header}>
-              <h1 className={styleTheme}>Posts</h1>
-              <Button
-                variant={styleTheme}
-                onClick={toggleTheme}
-                className={style.button_change}
-              >
+              <h1 className={theme}>Posts</h1>
+              <Button onClick={toggleTheme} className={style.button_change}>
                 Try {theme === "light" ? "dark" : "light"} theme
               </Button>
             </div>
           </div>
         </header>
-        {loading && (
-          <Spinner
-            animation="border"
-            variant="dark"
-            className={style.loading}
-          />
-        )}
         <div className={style.container}>
-          <PostsBlock
-            posts={shownPosts}
-            authors={authors}
-            styleTheme={styleTheme}
-          ></PostsBlock>
+          {loading && <MyLoader />}
+          <PostsBlock posts={shownPosts} authors={authors}></PostsBlock>
           <Button
-            variant={styleTheme}
-            onClick={() => setNumberOfShown(numberOfShown + 10)}
+            onClick={useCallback(
+              () => setNumberOfShown(numberOfShown + 10),
+              [numberOfShown]
+            )}
             disabled={disabled}
           >
             Show more
