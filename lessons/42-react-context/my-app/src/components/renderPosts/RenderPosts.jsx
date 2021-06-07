@@ -11,6 +11,10 @@ import style from "./RenderPosts.module.css";
 import { themeContext } from "../themeContext/ThemeContext";
 import ContentLoader from "react-content-loader";
 const MyLoader = () => <ContentLoader />;
+let requests = [
+  "https://jsonplaceholder.typicode.com/posts",
+  "https://jsonplaceholder.typicode.com/users",
+].map((url) => fetch(url));
 
 const RenderPosts = () => {
   const { theme, toggleTheme } = useContext(themeContext);
@@ -18,11 +22,6 @@ const RenderPosts = () => {
   const [posts, setPosts] = useState([]);
   const [authors, setAuthors] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  let requests = [
-    "https://jsonplaceholder.typicode.com/posts",
-    "https://jsonplaceholder.typicode.com/users",
-  ].map((url) => fetch(url));
 
   useEffect(() => {
     setLoading(true);

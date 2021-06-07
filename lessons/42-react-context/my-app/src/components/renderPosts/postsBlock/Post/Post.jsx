@@ -4,7 +4,6 @@ import { useState, useContext } from "react";
 import { themeContext } from "../../../themeContext/ThemeContext";
 import Modal from "../../../Modal/Modal";
 
-/* */
 const Post = (props) => {
   const { theme } = useContext(themeContext);
   const address = `${props.author.address.city} ${props.author.address.street} ${props.author.address.suite}`;
@@ -13,7 +12,7 @@ const Post = (props) => {
   const handleModal = () => {
     return show ? setShow(false) : setShow(true);
   };
-  console.log(show);
+
   return (
     <div className={`cardItem  ${theme}`}>
       <div className={`cardItem__body`}>
