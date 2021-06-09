@@ -6,10 +6,8 @@ import { themeContext } from "../../../../themeContext/ThemeContext";
 
 const PostDetails = () => {
   const { theme } = useContext(themeContext);
-
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
-  const [loading, setLoading] = useState(false);
   const { postId } = useParams();
 
   useEffect(() => {
