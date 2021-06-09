@@ -1,0 +1,25 @@
+.headerBlock {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.headerItem {
+  letter-spacing: 0.1em;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 15px;
+}
+
+.headerItem:last-child {
+  margin-right: 0;
+}
+
+.headerItem:hover {
+  text-decoration: underline;
+}
+
+.selected {
+  color: #356edf;
+  font-weight: 700;
+}

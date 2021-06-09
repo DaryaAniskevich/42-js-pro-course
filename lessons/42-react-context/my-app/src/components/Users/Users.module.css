@@ -1,0 +1,15 @@
+.block {
+  display: grid;
+  grid-template-columns: repeat(5, 210px);
+  justify-content: center;
+  padding: 10px 0 40px;
+}
+
+.item {
+  padding: 15px;
+  max-width: 210px;
+  width: 100%;
+  border: 1px solid #ebebeb;
+  border-radius: 7px;
+  text-align: center;
+}

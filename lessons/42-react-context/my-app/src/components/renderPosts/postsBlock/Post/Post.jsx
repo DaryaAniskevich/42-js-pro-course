@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 
 import { themeContext } from "../../../themeContext/ThemeContext";
 import Modal from "../../../Modal/Modal";
+import { Link } from "react-router-dom";
 
 const Post = (props) => {
   const { theme } = useContext(themeContext);
@@ -18,6 +19,7 @@ const Post = (props) => {
       <div className={`cardItem__body`}>
         <h2 className="cardItem__header">{props.post.title}</h2>
         <div className="cardItem__content">{props.post.body}</div>
+        <Link to={`/posts/${props.post.id}`}>Show details..</Link>
       </div>
       <div
         onClick={handleModal}

@@ -1,0 +1,33 @@
+.block {
+  width: 100%;
+  max-width: 1250px;
+  padding: 10px 100px 40px;
+}
+
+.post {
+  margin-bottom: 50px;
+}
+
+.comments_header {
+  margin-bottom: 15px;
+}
+
+.commentsItem {
+  padding: 20px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 10px;
+}
+
+.commentsItem_email {
+  color: #356edf;
+}
+
+.commentsItem_name {
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.commentsItem_body {
+  margin-bottom: 5px;
+}

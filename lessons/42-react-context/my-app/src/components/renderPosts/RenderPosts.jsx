@@ -11,13 +11,9 @@ import style from "./RenderPosts.module.css";
 import { themeContext } from "../themeContext/ThemeContext";
 import ContentLoader from "react-content-loader";
 const MyLoader = () => <ContentLoader />;
-let requests = [
-  "https://jsonplaceholder.typicode.com/posts",
-  "https://jsonplaceholder.typicode.com/users",
-].map((url) => fetch(url));
 
 const RenderPosts = () => {
-  const { theme, toggleTheme } = useContext(themeContext);
+  const { theme } = useContext(themeContext);
 
   const [posts, setPosts] = useState([]);
   const [authors, setAuthors] = useState([]);
@@ -25,7 +21,12 @@ const RenderPosts = () => {
 
   useEffect(() => {
     setLoading(true);
-    Promise.all(requests)
+    Promise.all(
+      [
+        "https://jsonplaceholder.typicode.com/posts",
+        "https://jsonplaceholder.typicode.com/users",
+      ].map((url) => fetch(url))
+    )
       .then((responses) => Promise.all(responses.map((r) => r.json())))
       .then((results) => {
         setAuthors(results[1]);
@@ -47,16 +48,6 @@ const RenderPosts = () => {
   return (
     <>
       <div className={`${theme}-background`}>
-        <header className={theme}>
-          <div className={style.container}>
-            <div className={style.header}>
-              <h1 className={theme}>Posts</h1>
-              <Button onClick={toggleTheme} className={style.button_change}>
-                Try {theme === "light" ? "dark" : "light"} theme
-              </Button>
-            </div>
-          </div>
-        </header>
         <div className={style.container}>
           {loading && <MyLoader />}
           <PostsBlock posts={shownPosts} authors={authors}></PostsBlock>
