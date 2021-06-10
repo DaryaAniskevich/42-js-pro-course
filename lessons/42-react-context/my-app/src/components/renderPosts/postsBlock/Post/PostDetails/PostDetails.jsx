@@ -3,14 +3,17 @@ import { useParams } from "react-router-dom";
 import style from "./PostDetails.module.css";
 import { useContext } from "react";
 import { themeContext } from "../../../../themeContext/ThemeContext";
+import MyLoader from "../../../../MyLoader/MyLoader";
 
 const PostDetails = () => {
   const { theme } = useContext(themeContext);
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { postId } = useParams();
 
   useEffect(() => {
+    setLoading(true);
     Promise.all(
       [
         `http://jsonplaceholder.typicode.com/posts/${postId}`,
@@ -21,6 +24,7 @@ const PostDetails = () => {
       .then((results) => {
         setComments(results[1]);
         setPost(results[0]);
+        setLoading(false);
       });
   }, [postId]);
 
@@ -35,7 +39,7 @@ const PostDetails = () => {
           <h3 className={style.comments_header}>Comments</h3>
           {comments.map((comment) => {
             return (
-              <div className={style.commentsItem}>
+              <div key={comment.id} className={style.commentsItem}>
                 <p className={style.commentsItem_name}>{comment.name}</p>
 
                 <p className={style.commentsItem_body}>{comment.body}</p>
@@ -46,7 +50,9 @@ const PostDetails = () => {
         </div>
       </div>
     </div>
-  ) : null;
+  ) : (
+    <MyLoader />
+  );
 };
 
 export default PostDetails;

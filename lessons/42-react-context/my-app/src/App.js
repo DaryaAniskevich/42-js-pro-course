@@ -3,14 +3,7 @@ import RenderPosts from "./components/renderPosts/RenderPosts";
 import Users from "./components/Users/Users";
 import PostDetails from "./components/renderPosts/postsBlock/Post/PostDetails/PostDetails";
 import { ThemeProvider } from "./components/themeContext/ThemeContext";
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Redirect,
-  NavLink,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import React from "react";
 import Header from "./components/Header/Header";
 

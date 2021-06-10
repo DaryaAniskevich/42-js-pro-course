@@ -9,8 +9,7 @@ import PostsBlock from "./postsBlock/PostsBlock";
 import Button from "../Button/Button";
 import style from "./RenderPosts.module.css";
 import { themeContext } from "../themeContext/ThemeContext";
-import ContentLoader from "react-content-loader";
-const MyLoader = () => <ContentLoader />;
+import MyLoader from "../MyLoader/MyLoader";
 
 const RenderPosts = () => {
   const { theme } = useContext(themeContext);
