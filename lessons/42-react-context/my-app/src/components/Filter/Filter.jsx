@@ -1,21 +1,22 @@
 import { Button } from "antd";
 import { useDispatch } from "react-redux";
-import { changeFilter } from "../../store/filterActions";
+import {
+  showDoneTodos,
+  showActiveTodos,
+  showAllTodos,
+} from "../../store/actions";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const onChangeFilter = (filter) => {
-    dispatch(changeFilter(filter));
-  };
 
   return (
     <>
       <label>Show </label>
-      <Button type="primary" onClick={() => onChangeFilter("All")}>
+      <Button type="primary" onClick={() => dispatch(showAllTodos())}>
         All
       </Button>
-      <Button onClick={() => onChangeFilter("Active")}>Active</Button>
-      <Button onClick={() => onChangeFilter("Done")}>Done</Button>
+      <Button onClick={() => dispatch(showActiveTodos())}>Active</Button>
+      <Button onClick={() => dispatch(showDoneTodos())}>Done</Button>
     </>
   );
 };

@@ -1,11 +1,14 @@
 import { List, Typography, Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { removeTodo, toggleTodoStatus } from "../../store/todoActions";
+import { removeTodo, toggleTodoStatus } from "../../store/actions";
 
 const Todos = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todoReducer.todos);
-  const filter = useSelector((state) => state.filterReducer.filter);
+  const todos = useSelector((state) =>
+    state.todoReducer.filter === "All"
+      ? state.todoReducer.todos
+      : state.todoReducer.filteredTodos
+  );
 
   const onRemoveTodo = (id) => {
     dispatch(removeTodo(id));
@@ -14,20 +17,9 @@ const Todos = () => {
     dispatch(toggleTodoStatus(id));
   };
 
-  const filterTodos = (todos, filter) => {
-    if (filter === "Active") {
-      return todos.filter((item) => !item.isDone);
-    } else if (filter === "Done") {
-      return todos.filter((item) => item.isDone);
-    } else {
-      return todos;
-    }
-  };
-  const filteredTodos = filterTodos(todos, filter);
-
   return (
     <List
-      dataSource={filteredTodos}
+      dataSource={todos}
       bordered
       renderItem={(item) => (
         <List.Item>

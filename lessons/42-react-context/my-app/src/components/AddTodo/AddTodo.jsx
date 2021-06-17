@@ -1,6 +1,6 @@
 import { Form, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../../store/todoActions";
+import { addTodo } from "../../store/actions";
 import { useState } from "react";
 
 const AddTodo = () => {
