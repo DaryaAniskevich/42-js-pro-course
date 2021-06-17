@@ -1,16 +1,7 @@
-import {
-  ADD_TODO,
-  REMOVE_TODO,
-  TOGGLE_TODO_STATUS,
-  ALL_FILTER,
-  DONE_FILTER,
-  ACTIVE_FILTER,
-} from "./actions";
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO_STATUS } from "./todoActions";
 
 const initialState = {
   todos: [],
-  filter: "All",
-  filteredTodos: [],
 };
 
 const todoReducer = (state = initialState, action) => {
@@ -45,27 +36,6 @@ const todoReducer = (state = initialState, action) => {
             return item;
           }
         }),
-      };
-    }
-    case ALL_FILTER: {
-      return {
-        ...state,
-        filter: action.filter,
-        filteredTodos: state.todos,
-      };
-    }
-    case DONE_FILTER: {
-      return {
-        ...state,
-        filter: action.filter,
-        filteredTodos: state.todos.filter((item) => item.isDone),
-      };
-    }
-    case ACTIVE_FILTER: {
-      return {
-        ...state,
-        filter: action.filter,
-        filteredTodos: state.todos.filter((item) => !item.isDone),
       };
     }
     default: {
