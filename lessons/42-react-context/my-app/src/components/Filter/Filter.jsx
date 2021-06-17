@@ -1,12 +1,16 @@
 import { Button } from "antd";
+import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { changeFilter } from "../../store/filterActions";
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const onChangeFilter = (filter) => {
-    dispatch(changeFilter(filter));
-  };
+  const onChangeFilter = useCallback(
+    (filter) => {
+      dispatch(changeFilter(filter));
+    },
+    [dispatch]
+  );
 
   return (
     <>

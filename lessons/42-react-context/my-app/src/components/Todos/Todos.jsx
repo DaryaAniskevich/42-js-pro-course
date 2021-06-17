@@ -1,12 +1,13 @@
 import { List, Typography, Button } from "antd";
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTodo, toggleTodoStatus } from "../../store/todoActions";
+import { getTodos, getFilter } from "../../store/selector";
 
 const Todos = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todoReducer.todos);
-  const filter = useSelector((state) => state.filterReducer.filter);
+  const todos = useSelector(getTodos);
+  const filter = useSelector(getFilter);
 
   const filteredTodos = useMemo(() => {
     if (filter === "Active") {
@@ -18,12 +19,18 @@ const Todos = () => {
     }
   }, [todos, filter]);
 
-  const onRemoveTodo = (id) => {
-    dispatch(removeTodo(id));
-  };
-  const onToggleTodoStatus = (id) => {
-    dispatch(toggleTodoStatus(id));
-  };
+  const onRemoveTodo = useCallback(
+    (id) => {
+      dispatch(removeTodo(id));
+    },
+    [dispatch]
+  );
+  const onToggleTodoStatus = useCallback(
+    (id) => {
+      dispatch(toggleTodoStatus(id));
+    },
+    [dispatch]
+  );
 
   return (
     <List

@@ -8,7 +8,7 @@ const todoReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO: {
       const newTodo = {
-        id: Math.random().toString(16).slice(3),
+        id: new Date().valueOf().toString(),
         name: action.payload,
         isDone: false,
       };

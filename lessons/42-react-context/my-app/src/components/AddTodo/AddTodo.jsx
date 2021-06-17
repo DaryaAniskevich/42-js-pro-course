@@ -2,17 +2,18 @@ import { Form, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../store/todoActions";
 import { useState } from "react";
+import { useCallback } from "react";
 
 const AddTodo = () => {
   const dispatch = useDispatch();
   const [todoValue, setTodoValue] = useState("");
-  const getTodoValue = (event) => {
+  const getTodoValue = useCallback((event) => {
     setTodoValue(event.target.value);
-  };
-  const addTodoItem = () => {
+  }, []);
+  const addTodoItem = useCallback(() => {
     dispatch(addTodo(todoValue));
     setTodoValue("");
-  };
+  }, [dispatch, todoValue]);
 
   return (
     <Form layout="inline">
