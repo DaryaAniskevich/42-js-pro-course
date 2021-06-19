@@ -1,2 +1,2 @@
-export const getTodos = (state) => state.todoReducer.todos;
-export const getFilter = (state) => state.filterReducer.filter;
+export const getTodos = (state) => state.todo.todos;
+export const getFilter = (state) => state.filter.filter;

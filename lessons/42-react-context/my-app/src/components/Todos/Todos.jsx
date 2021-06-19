@@ -3,6 +3,7 @@ import { useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeTodo, toggleTodoStatus } from "../../store/todoActions";
 import { getTodos, getFilter } from "../../store/selector";
+import { filterStatus } from "../values";
 
 const Todos = () => {
   const dispatch = useDispatch();
@@ -10,9 +11,9 @@ const Todos = () => {
   const filter = useSelector(getFilter);
 
   const filteredTodos = useMemo(() => {
-    if (filter === "Active") {
+    if (filter === filterStatus.active) {
       return todos.filter((item) => !item.isDone);
-    } else if (filter === "Done") {
+    } else if (filter === filterStatus.done) {
       return todos.filter((item) => item.isDone);
     } else {
       return todos;
