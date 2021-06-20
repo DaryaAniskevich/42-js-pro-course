@@ -1,0 +1,19 @@
+.item {
+  padding: 20px;
+  border-bottom: 1px solid #ebebeb;
+  margin-bottom: 10px;
+}
+
+.email {
+  color: #356edf;
+}
+
+.name {
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.body {
+  margin-bottom: 5px;
+}

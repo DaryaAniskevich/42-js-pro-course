@@ -10,29 +10,21 @@ import Button from "../Button/Button";
 import style from "./RenderPosts.module.css";
 import { themeContext } from "../themeContext/ThemeContext";
 import MyLoader from "../MyLoader/MyLoader";
+import { useDispatch, useSelector } from "react-redux";
+import { postsSelector, postsIsLoadingSelector } from "../../redux/selectors";
+import { postsGetData } from "../../redux/PostsRedux/actionsPosts";
 
 const RenderPosts = () => {
   const { theme } = useContext(themeContext);
 
-  const [posts, setPosts] = useState([]);
-  const [authors, setAuthors] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const posts = useSelector(postsSelector);
+  const loading = useSelector(postsIsLoadingSelector);
 
   useEffect(() => {
-    setLoading(true);
-    Promise.all(
-      [
-        "https://jsonplaceholder.typicode.com/posts",
-        "https://jsonplaceholder.typicode.com/users",
-      ].map((url) => fetch(url))
-    )
-      .then((responses) => Promise.all(responses.map((r) => r.json())))
-      .then((results) => {
-        setAuthors(results[1]);
-        setPosts(results[0]);
-        setLoading(false);
-      });
-  }, []);
+    dispatch(postsGetData());
+  }, [dispatch]);
 
   const [numberOfShown, setNumberOfShown] = useState(5);
   const shownPosts = useMemo(() => {
@@ -43,25 +35,22 @@ const RenderPosts = () => {
   if (shownPosts.length >= posts.length) {
     disabled = true;
   }
+  const showMore = useCallback(
+    () => setNumberOfShown(numberOfShown + 10),
+    [numberOfShown]
+  );
 
-  return (
-    <>
-      <div className={`${theme}-background`}>
-        <div className={style.container}>
-          {loading && <MyLoader />}
-          <PostsBlock posts={shownPosts} authors={authors}></PostsBlock>
-          <Button
-            onClick={useCallback(
-              () => setNumberOfShown(numberOfShown + 10),
-              [numberOfShown]
-            )}
-            disabled={disabled}
-          >
-            Show more
-          </Button>
-        </div>
+  return loading ? (
+    <MyLoader />
+  ) : (
+    <div className={`${theme}-background`}>
+      <div className={style.container}>
+        <PostsBlock posts={shownPosts}></PostsBlock>
+        <Button onClick={showMore} disabled={disabled}>
+          Show more
+        </Button>
       </div>
-    </>
+    </div>
   );
 };
 

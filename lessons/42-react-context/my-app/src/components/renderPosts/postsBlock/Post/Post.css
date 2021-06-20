@@ -40,3 +40,21 @@
 .cadrItem__footer-dark {
   background-color: #343a40;
 }
+.cardItem__link {
+  font-size: 12px;
+  text-decoration: none;
+
+  font-style: italic;
+}
+
+.cardItem__link:hover {
+  font-weight: 500;
+}
+
+.cardItem__link:active {
+  font-weight: 400;
+}
+
+.cardItem__link:visited {
+  opacity: 0.6;
+}

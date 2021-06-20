@@ -1,7 +1,8 @@
-import { changeTheme } from "./actions";
+import { changeThemeType } from "./actionsTheme";
+
 const themeReducer = (state = { theme: "light" }, action) => {
   switch (action.type) {
-    case "CHANGE_THEME": {
+    case changeThemeType: {
       return {
         ...state,
         theme: action.payload,

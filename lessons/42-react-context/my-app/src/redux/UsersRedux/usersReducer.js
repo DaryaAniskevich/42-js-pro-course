@@ -1,4 +1,4 @@
-import { setUsers, usersIsLoading } from "./actions";
+import { usersIsLoadingType, setUsersType } from "./actionsUsers";
 
 const initialState = {
   users: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_USERS": {
+    case setUsersType: {
       return {
         ...state,
         users: action.payload,
       };
     }
-    case "USERS_IS_LOADING": {
+    case usersIsLoadingType: {
       return {
         ...state,
         isLoading: action.payload,
@@ -23,15 +23,6 @@ const usersReducer = (state = initialState, action) => {
       return state;
     }
   }
-};
-
-const usersGetData = () => async (dispatch) => {
-  dispatch(usersIsLoading(true));
-  const users = await fetch("http://jsonplaceholder.typicode.com/users").then(
-    (res) => res.json()
-  );
-  dispatch(usersIsLoading(false));
-  dispatch(setUsers(users));
 };
 
 export default usersReducer;

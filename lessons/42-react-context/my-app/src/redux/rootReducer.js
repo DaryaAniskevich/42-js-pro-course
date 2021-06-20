@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import postsReducer from "./postsReducer";
-import usersReducer from "./usersReducer";
-import postDetailsReducer from "./postDetailsReducer";
-import themeReducer from "./themeReducer";
+import postsReducer from "./PostsRedux/postsReducer";
+import usersReducer from "./UsersRedux/usersReducer";
+import postDetailsReducer from "./PostDetailsRedux/postDetailsReducer";
+import themeReducer from "./ThemeRedux/themeReducer";
 
 const rootReducer = combineReducers({
   themeReducer,

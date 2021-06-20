@@ -4,8 +4,4 @@ import rootReducer from "./rootReducer";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-  console.log(store.getState());
-});
-//store.dispatch(changeTheme("dark"));
 export default store;

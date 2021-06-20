@@ -17,9 +17,11 @@ const Post = (props) => {
   return (
     <div className={`cardItem  ${theme}`}>
       <div className={`cardItem__body`}>
-        <h2 className="cardItem__header">{props.post.title}</h2>
-        <div className="cardItem__content">{props.post.body}</div>
-        <Link to={`/posts/${props.post.id}`}>Show details..</Link>
+        <h2 className="cardItem__header">{props.title}</h2>
+        <div className="cardItem__content">{props.body}</div>
+        <Link to={`/posts/${props.id}`} className={`cardItem__link ${theme}`}>
+          Show details..
+        </Link>
       </div>
       <div
         onClick={handleModal}

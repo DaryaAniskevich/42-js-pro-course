@@ -1,4 +1,4 @@
-import { postsIsLoading, setPosts } from "./actions";
+import { postsIsLoadingType, setPostsType } from "./actionsPosts";
 
 const initialState = {
   posts: [],
@@ -7,13 +7,13 @@ const initialState = {
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SET_POSTS": {
+    case setPostsType: {
       return {
         ...state,
         posts: action.payload,
       };
     }
-    case "POSTS_IS_LOADING": {
+    case postsIsLoadingType: {
       return {
         ...state,
         isLoading: action.payload,
@@ -23,15 +23,6 @@ const postsReducer = (state = initialState, action) => {
       return state;
     }
   }
-};
-
-const postsGetData = () => async (dispatch) => {
-  dispatch(postsIsLoading(true));
-  const posts = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?_expand=users"
-  ).then((res) => res.json());
-  dispatch(postsIsLoading(false));
-  dispatch(setPosts(posts));
 };
 
 export default postsReducer;

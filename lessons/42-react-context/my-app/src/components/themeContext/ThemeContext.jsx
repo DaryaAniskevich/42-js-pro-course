@@ -1,12 +1,18 @@
-import { createContext, useState, useCallback } from "react";
+import { createContext, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { themeSelector } from "../../redux/selectors";
+import { changeTheme } from "../../redux/ThemeRedux/actionsTheme";
 
 export const themeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+  const dispatch = useDispatch();
+  const theme = useSelector(themeSelector);
   const toggleTheme = useCallback(() => {
-    setTheme(theme === "light" ? "dark" : "light");
-  }, [theme]);
+    theme === "light"
+      ? dispatch(changeTheme("dark"))
+      : dispatch(changeTheme("light"));
+  }, [theme, dispatch]);
   return (
     <themeContext.Provider value={{ theme, toggleTheme }}>
       {children}

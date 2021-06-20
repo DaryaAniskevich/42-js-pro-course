@@ -7,9 +7,11 @@ const PostsBlock = (props) => {
       {props.posts.map((post) => {
         return (
           <Post
-            post={post}
             key={post.id}
-            author={props.authors.find((author) => author.id === post.userId)}
+            title={post.title}
+            body={post.body}
+            author={post.user}
+            id={post.id}
           />
         );
       })}
